@@ -19,6 +19,7 @@ export const FeedFilter = ({ onFilter }) => {
         value={filterBy.txt}
         name="txt"
         onChange={onSetFilter}
+        placeholder="Filter"
       />
     </section>
   )

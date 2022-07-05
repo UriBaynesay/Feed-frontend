@@ -54,7 +54,8 @@ ul {
 input,
 textarea {
   border: none;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid white;
+  background-color: transparent;
 }
 
 textarea {
@@ -68,8 +69,8 @@ form {
 }
 
 button{
-    background-color: lightsalmon;
-    border-radius: 1em;
+    background-color: rgba(17, 216, 43, 0.301);
+    border-radius: 0.5em;
     cursor: pointer;
     border: none;
     padding: 10px;
