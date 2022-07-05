@@ -10,7 +10,7 @@ export const FeedApp = () => {
 
   useEffect(() => {
     loadMsgs()
-  })
+  },[])
 
   const loadMsgs = async () => {
     setMsgs(await msgService.query())
