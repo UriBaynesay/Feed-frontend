@@ -8,14 +8,15 @@ export const FeedForm = ({ onSendMsg }) => {
   }
 
   return (
-    <form onSubmit={(ev) => {ev.preventDefault();onSendMsg(msg)}}>
+    <form className="feed-form" onSubmit={(ev) => {ev.preventDefault();onSendMsg(msg)}}>
       <input
         type="email"
         name="email"
         value={msg.email}
         onChange={(ev) => onChangeMsg(ev)}
+        placeholder="Enter your email here"
       />
-      <textarea value={msg.txt} name="txt" onChange={(ev) => onChangeMsg(ev)} />
+      <textarea value={msg.txt} name="txt" onChange={(ev) => onChangeMsg(ev)} placeholder="Whats on your mind"/>
       <button className="send-msg-btn">Send</button>
     </form>
   )
