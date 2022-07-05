@@ -1,7 +1,6 @@
 import { MsgPreview } from "./msg-preview"
 
 export const MsgList = ({ msgs }) => {
-  console.log(msgs);
   return (
     <section className="msgs-list-container">
       <ul>
