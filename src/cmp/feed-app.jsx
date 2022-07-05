@@ -12,8 +12,12 @@ export const FeedApp = () => {
     loadMsgs()
   }, [])
 
-  const loadMsgs = async () => {
-    setMsgs(await msgService.query())
+  const loadMsgs = async (filterBy = { txt: "" }) => {
+    try {
+      setMsgs(await msgService.query(filterBy))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const onSendMsg = async (msg) => {
@@ -24,12 +28,14 @@ export const FeedApp = () => {
       console.log(error)
     }
   }
-  const onSetFilter = (filterBy) => {}
+  const onFilter = (filterBy) => {
+    loadMsgs(filterBy)
+  }
 
   return (
     <section className="feed-app-container">
       <FeedForm onSendMsg={onSendMsg} />
-      <FeedFilter onSetFilter={onSetFilter} />
+      <FeedFilter onFilter={onFilter} />
       <MsgList msgs={msgs} />
     </section>
   )

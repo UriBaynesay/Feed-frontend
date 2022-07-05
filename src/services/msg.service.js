@@ -9,8 +9,16 @@ export const msgService = {
   addMsg,
 }
 
-async function query() {
-  return await storageService.query(STORAGE_KEY)
+async function query(filterBy) {
+  let msgs = await storageService.query(STORAGE_KEY)
+  if (filterBy.txt) {
+    const regEx = new RegExp(filterBy.txt, "i")
+    msgs = msgs.filter((msg) => {
+      if (regEx.test(msg.email) || regEx.test(msg.txt)) return true
+      return false
+    })
+  }
+  return msgs
 }
 
 async function addMsg(msg) {
@@ -18,7 +26,7 @@ async function addMsg(msg) {
 }
 
 async function _setLocalStorageDummiData() {
-  const msgs = await query()
+  const msgs = await query({ txt: "" })
   if (msgs.length === 0) {
     storageService.post(STORAGE_KEY, {
       imgUrl: "",
