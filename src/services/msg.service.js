@@ -20,12 +20,10 @@ async function addMsg(msg) {
 async function _setLocalStorageDummiData() {
   const msgs = await query()
   if (msgs.length === 0) {
-    storageService.post(STORAGE_KEY, [
-      {
-        imgUrl: "",
-        email: "uri552@gmail.com",
-        msg: "hello there",
-      },
-    ])
+    storageService.post(STORAGE_KEY, {
+      imgUrl: "",
+      email: "uri552@gmail.com",
+      txt: "hello there",
+    })
   }
 }
