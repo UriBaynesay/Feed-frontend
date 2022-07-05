@@ -10,13 +10,20 @@ export const FeedApp = () => {
 
   useEffect(() => {
     loadMsgs()
-  },[])
+  }, [])
 
   const loadMsgs = async () => {
     setMsgs(await msgService.query())
   }
 
-  const onSendMsg = (msg) => {}
+  const onSendMsg = async (msg) => {
+    try {
+      const newMsg = await msgService.addMsg(msg)
+      setMsgs([...msgs, newMsg])
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const onSetFilter = (filterBy) => {}
 
   return (
