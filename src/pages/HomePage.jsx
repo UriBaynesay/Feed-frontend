@@ -1,5 +1,9 @@
-export const HomePage=()=>{
-    return <div className="home-page-container">
-        <h1>hello form home page</h1>
+import { FeedApp } from "../cmp/feed-app"
+
+export const HomePage = () => {
+  return (
+    <div className="home-page-container">
+      <FeedApp />
     </div>
+  )
 }
