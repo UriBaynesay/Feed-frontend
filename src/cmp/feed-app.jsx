@@ -1,17 +1,19 @@
+import { useEffect, useState } from "react"
+
 import { FeedForm } from "./feed-form"
 import { FeedFilter } from "./feed-filter"
 import { MsgList } from "./msg-list"
-import { useEffect, useState } from "react"
+import { msgService } from "../services/msg.service"
 
 export const FeedApp = () => {
   const [msgs, setMsgs] = useState([])
 
-  useEffect(()=>{
+  useEffect(() => {
     loadMsgs()
   })
 
-  const loadMsgs=async()=>{
-    setMsgs()
+  const loadMsgs = async () => {
+    setMsgs(await msgService.query())
   }
 
   const onSendMsg = (msg) => {}
