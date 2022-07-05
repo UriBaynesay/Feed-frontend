@@ -1,8 +1,7 @@
-import { storageService } from "./async-storage.service.js"
+import { httpService } from "./http.service"
 
-const STORAGE_KEY = "MSGS"
+const END_POINT = "msg"
 
-_setLocalStorageDummiData()
 
 export const msgService = {
   query,
@@ -10,28 +9,20 @@ export const msgService = {
 }
 
 async function query(filterBy) {
-  let msgs = await storageService.query(STORAGE_KEY)
-  if (filterBy.txt) {
-    const regEx = new RegExp(filterBy.txt, "i")
-    msgs = msgs.filter((msg) => {
-      if (regEx.test(msg.email) || regEx.test(msg.txt)) return true
-      return false
-    })
+  try {
+    const msgs = await httpService.get(END_POINT, filterBy)
+    return msgs
+  } catch (error) {
+    throw error
   }
-  return msgs
 }
 
 async function addMsg(msg) {
-  return await storageService.post(STORAGE_KEY, msg)
-}
-
-async function _setLocalStorageDummiData() {
-  const msgs = await query({ txt: "" })
-  if (msgs.length === 0) {
-    storageService.post(STORAGE_KEY, {
-      imgUrl: "",
-      email: "uri552@gmail.com",
-      txt: "hello there",
-    })
+  try {
+    const newMsg=await httpService.post(END_POINT,msg)
+    return newMsg
+  } catch (error) {
+    throw error
   }
 }
+
